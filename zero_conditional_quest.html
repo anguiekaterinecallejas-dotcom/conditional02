@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Zero Conditional Quest</title>
+<style>
+:root{--ink:#202044;--muted:#737493;--purple:#6c55e8;--pink:#ff6ca8;--mint:#36d6b0;--gold:#ffc857;--paper:#fff;--bg:#f4f3ff}
+*{box-sizing:border-box}body{margin:0;font-family:Inter,ui-rounded,"Segoe UI",Arial,sans-serif;color:var(--ink);background:radial-gradient(circle at 10% 5%,#ffe6f1 0,transparent 26%),radial-gradient(circle at 90% 10%,#dcfff6 0,transparent 25%),var(--bg);min-height:100vh}
+.wrap{max-width:1060px;margin:auto;padding:24px 18px 50px}.top{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:20px}.brand{font-weight:900;letter-spacing:-.5px;font-size:18px;display:flex;align-items:center;gap:9px}.logo{background:var(--purple);color:white;border-radius:13px;padding:10px;box-shadow:0 6px 0 #4935b6}.stats{display:flex;gap:10px;flex-wrap:wrap}.pill{background:white;border:1px solid #e6e4fb;border-radius:14px;padding:10px 14px;font-weight:800;box-shadow:0 5px 15px #3d31800a}.pill span{color:var(--purple)}
+.hero{background:linear-gradient(120deg,#6c55e8,#8d73ff);color:white;border-radius:28px;padding:30px;position:relative;overflow:hidden;box-shadow:0 15px 35px #6c55e82b}.hero:after{content:"✨";position:absolute;font-size:100px;right:7%;top:8%;opacity:.25;transform:rotate(15deg)}.eyebrow{text-transform:uppercase;letter-spacing:2px;font-size:11px;font-weight:900;opacity:.85}.hero h1{font-size:clamp(30px,5vw,49px);line-height:1.03;letter-spacing:-1.5px;margin:10px 0}.hero p{max-width:590px;line-height:1.6;color:#f0edff;margin:12px 0 20px}.hero button{background:var(--gold);color:#3d2d5c;border:0;border-radius:13px;padding:13px 20px;font-weight:900;font-size:15px;cursor:pointer;box-shadow:0 5px 0 #d89e32}.hero button:active,.btn:active{transform:translateY(3px);box-shadow:none}
+.layout{display:grid;grid-template-columns: .82fr 1.5fr;gap:18px;margin-top:18px}.panel{background:#fff;border:1px solid #e9e7fb;border-radius:23px;padding:22px;box-shadow:0 10px 30px #33286b08}.panel h2{margin:0 0 12px;font-size:19px;letter-spacing:-.4px}.rule{background:#f4f1ff;border-radius:15px;padding:14px;margin:12px 0;line-height:1.55}.formula{font-weight:900;color:#5d47d6;font-size:16px}.highlight{color:#e44d91;font-weight:900}.example{background:#edfff9;border-radius:14px;padding:13px 14px;margin-top:10px;font-size:14px;line-height:1.6}.mini{font-size:12px;color:var(--muted);line-height:1.5}.progress-head{display:flex;justify-content:space-between;align-items:center;font-size:12px;font-weight:800;color:var(--muted);margin:18px 0 8px}.bar{height:9px;background:#eeecfb;border-radius:20px;overflow:hidden}.bar div{height:100%;background:linear-gradient(90deg,var(--mint),#7ae8cd);width:0;transition:width .35s;border-radius:20px}
+.game-top{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:15px}.tag{font-size:11px;font-weight:900;letter-spacing:.8px;text-transform:uppercase;border-radius:9px;padding:7px 10px;background:#fff1f7;color:#d94b8a}.question-num{font-size:12px;color:var(--muted);font-weight:800}.scene{display:flex;align-items:center;justify-content:center;gap:16px;background:linear-gradient(130deg,#f0edff,#effffb);border-radius:18px;min-height:112px;margin:14px 0;padding:18px;text-align:center}.emoji{font-size:52px;filter:drop-shadow(0 4px 0 #d6d1ff)}.scene-text{font-weight:800;line-height:1.5}.question{font-size:21px;line-height:1.45;font-weight:900;letter-spacing:-.4px;margin:16px 0}.blank{color:#6c55e8;border-bottom:3px dashed #a89cff;padding:0 4px;white-space:nowrap}.answers{display:grid;grid-template-columns:1fr 1fr;gap:10px}.answer{border:2px solid #e8e6f8;background:#fff;border-radius:14px;padding:14px;text-align:left;font-weight:800;color:var(--ink);cursor:pointer;transition:.15s;min-height:56px}.answer:hover{border-color:#9b8cff;background:#faf9ff;transform:translateY(-2px)}.answer.correct{border-color:#27c69e;background:#eafff7}.answer.wrong{border-color:#ff7cae;background:#fff0f6}.answer:disabled{cursor:default}.feedback{display:none;border-radius:13px;padding:13px 14px;margin-top:13px;font-size:14px;line-height:1.5;font-weight:700}.feedback.show{display:block}.feedback.good{background:#eafff7;color:#116e58}.feedback.bad{background:#fff0f6;color:#9c315b}.actions{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:17px}.btn{border:0;border-radius:12px;padding:12px 17px;font-weight:900;cursor:pointer}.btn.primary{background:var(--purple);color:white;box-shadow:0 4px 0 #4935b6}.btn.secondary{background:#f1efff;color:#5e4ac9}.btn:disabled{opacity:.4;cursor:not-allowed}.tip{font-size:12px;color:var(--muted)}.bottom{margin-top:18px;text-align:center;color:#8887a7;font-size:12px}.result{display:none;text-align:center;padding:20px 4px}.result .big{font-size:65px}.result h2{font-size:28px}.result p{color:var(--muted);line-height:1.6}.result.show{display:block}.game.hide{display:none}
+@media(max-width:760px){.layout{grid-template-columns:1fr}.hero{padding:24px}.hero:after{right:-5%;font-size:75px}.top{align-items:flex-start;flex-direction:column}.answers{grid-template-columns:1fr}.question{font-size:19px}.panel{padding:18px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <div class="brand"><span class="logo">⚡</span> ENGLISH ARCADE <span style="color:#8b7bea">/</span> Grammar Quest</div>
+    <div class="stats"><div class="pill">⭐ Score: <span id="score">0</span></div><div class="pill">🔥 Streak: <span id="streak">0</span></div><div class="pill">🏅 Best: <span id="best">0</span></div></div>
+  </header>
+  <section class="hero">
+    <div class="eyebrow">WORLD 01 · GRAMMAR POWER-UP</div>
+    <h1>Zero Conditional<br>Quest</h1>
+    <p>Unlock the grammar badge! Learn to talk about facts, routines, and things that are always true. Answer 10 questions and collect points along the way.</p>
+    <button onclick="startGame()">▶ Start the quest</button>
+  </section>
+  <div class="layout">
+    <aside class="panel">
+      <h2>🧠 Quick lesson</h2>
+      <div class="rule"><div class="formula">IF + present simple, present simple</div><div class="mini" style="margin-top:7px">Use the zero conditional for facts, rules, and things that are generally true.</div></div>
+      <div class="example">🌡️ <b>If you heat ice, it melts.</b><br><span class="mini">A scientific fact.</span></div>
+      <div class="example">🌱 <b>If plants don't get water, they die.</b><br><span class="mini">A general truth.</span></div>
+      <div class="example">😴 <b>If I go to bed late, I feel tired.</b><br><span class="mini">A usual result.</span></div>
+      <p class="mini" style="margin-top:15px">💡 <b>Remember:</b> You can switch the order. “Plants die if they don't get water.” No comma is needed when the if-clause comes second.</p>
+      <div class="progress-head"><span>QUEST PROGRESS</span><span id="progressText">0 / 10</span></div><div class="bar"><div id="progressBar"></div></div>
+      <p class="mini" style="margin-top:12px">🎯 Correct answer = <b>+10 points</b><br>⚡ Three correct answers in a row = <b>+5 bonus</b></p>
+    </aside>
+    <main class="panel">
+      <div class="game" id="game">
+        <div class="game-top"><span class="tag" id="category">LEVEL 1 · BASICS</span><span class="question-num" id="qnum">QUESTION 1 OF 10</span></div>
+        <div class="scene"><div class="emoji" id="emoji">🌞</div><div class="scene-text" id="sceneText">Ready to power up your grammar?</div></div>
+        <div class="question" id="question">Press “Start the quest” to begin!</div>
+        <div class="answers" id="answers"></div>
+        <div class="feedback" id="feedback" aria-live="polite"></div>
+        <div class="actions"><span class="tip" id="tip">Choose the best answer.</span><button class="btn primary" id="nextBtn" onclick="nextQuestion()" disabled>Next ➜</button></div>
+      </div>
+      <div class="result" id="result"><div class="big" id="resultEmoji">🏆</div><h2 id="resultTitle">Quest complete!</h2><p id="resultText"></p><div class="pill" style="display:inline-block;margin:8px 0 20px">⭐ Final score: <span id="finalScore">0</span> / 115</div><br><button class="btn primary" onclick="startGame()">↻ Play again</button></div>
+    </main>
+  </div>
+  <div class="bottom">Made for curious minds ✨ · Learn a little, level up a lot.</div>
+</div>
+<script>
+const questions=[
+{cat:"LEVEL 1 · BASICS",emoji:"🧊",scene:"A simple science fact",q:"If you heat ice, it ___.",opts:["melt","melts","is melting","melted"],a:1,why:"Use the present simple in both parts. “Ice” is singular, so we say “melts.”"},
+{cat:"LEVEL 1 · BASICS",emoji:"🌧️",scene:"Think about the weather",q:"If it ___, the ground gets wet.",opts:["rain","rains","raining","will rain"],a:1,why:"“It” takes the present simple form “rains.” Zero conditional describes a general result."},
+{cat:"LEVEL 1 · BASICS",emoji:"🌿",scene:"Help the plant grow",q:"Plants die if they ___ water.",opts:["doesn't get","won't get","don't get","not get"],a:2,why:"The subject “they” uses “don't” + base verb: “don't get.”"},
+{cat:"LEVEL 2 · EVERYDAY LIFE",emoji:"😴",scene:"Your daily routine",q:"If I go to bed late, I ___ tired.",opts:["feel","feels","will felt","feeling"],a:0,why:"With “I,” use the base form “feel” in the present simple."},
+{cat:"LEVEL 2 · EVERYDAY LIFE",emoji:"🍫",scene:"A tasty general truth",q:"If you ___ chocolate in the sun, it melts.",opts:["left","leave","leaves","will leave"],a:1,why:"Use the present simple: “if you leave.” The subject “you” takes “leave.”"},
+{cat:"LEVEL 2 · EVERYDAY LIFE",emoji:"🚰",scene:"A useful everyday fact",q:"If people don't drink water, they ___ thirsty.",opts:["gets","got","get","will gets"],a:2,why:"“People” is plural, so use “get.” Both clauses use the present simple."},
+{cat:"LEVEL 3 · GRAMMAR PRO",emoji:"🔋",scene:"Power-saving mode",q:"A phone battery runs out if you ___ it.",opts:["don't charge","doesn't charge","won't charge","not charge"],a:0,why:"The subject “you” takes “don't charge.” The zero conditional explains a usual result."},
+{cat:"LEVEL 3 · GRAMMAR PRO",emoji:"🐝",scene:"Nature has rules",q:"Which sentence is correct?",opts:["If a bee sting you, it hurts.","If a bee stings you, it hurt.","If a bee stings you, it hurts.","If a bee will sting you, it hurts."],a:2,why:"“A bee” is singular, so use “stings”; the result “it hurts” is also present simple."},
+{cat:"LEVEL 3 · GRAMMAR PRO",emoji:"🧪",scene:"A science experiment",q:"Water ___ if the temperature drops below 0°C.",opts:["freeze","freezes","will freezes","freezing"],a:1,why:"“Water” is uncountable and takes a singular verb: “freezes.”"},
+{cat:"BOSS LEVEL · FINAL",emoji:"🏆",scene:"Final challenge — you can do it!",q:"Choose the zero conditional sentence.",opts:["If I see her tomorrow, I will call her.","If you press this button, the machine starts.","If it rains later, we might stay home.","If I had time, I would travel."],a:1,why:"This sentence describes a general result: if you press the button, the machine starts. Both verbs are present simple."}
+];
+let order=[],index=0,score=0,streak=0,best=Number(localStorage.getItem("zeroQuestBest")||0),answered=false;
+document.getElementById("best").textContent=best;
+function startGame(){order=[...questions.keys()];index=0;score=0;streak=0;answered=false;document.getElementById("score").textContent=score;document.getElementById("streak").textContent=streak;document.getElementById("game").classList.remove("hide");document.getElementById("result").classList.remove("show");renderQuestion();document.getElementById("game").scrollIntoView({behavior:"smooth",block:"nearest"});}
+function renderQuestion(){answered=false;let q=questions[order[index]];document.getElementById("category").textContent=q.cat;document.getElementById("qnum").textContent=`QUESTION ${index+1} OF ${questions.length}`;document.getElementById("emoji").textContent=q.emoji;document.getElementById("sceneText").textContent=q.scene;document.getElementById("question").textContent=q.q;document.getElementById("progressText").textContent=`${index} / ${questions.length}`;document.getElementById("progressBar").style.width=(index/questions.length*100)+"%";document.getElementById("feedback").className="feedback";document.getElementById("feedback").textContent="";document.getElementById("nextBtn").disabled=true;document.getElementById("nextBtn").textContent=index===questions.length-1?"See results 🏆":"Next ➜";document.getElementById("tip").textContent="Choose the best answer.";
+let box=document.getElementById("answers");box.innerHTML="";q.opts.forEach((opt,i)=>{let b=document.createElement("button");b.className="answer";b.textContent=String.fromCharCode(65+i)+". "+opt;b.onclick=()=>choose(i,b);box.appendChild(b);});}
+function choose(choice,button){if(answered)return;answered=true;let q=questions[order[index]],buttons=[...document.querySelectorAll(".answer")],fb=document.getElementById("feedback");buttons.forEach(b=>b.disabled=true);if(choice===q.a){score+=10;streak++;if(streak>0&&streak%3===0)score+=5;button.classList.add("correct");fb.className="feedback show good";fb.innerHTML="✅ Correct! "+q.why+(streak%3===0?"<br>⚡ Streak bonus: +5 points!":"");}else{streak=0;button.classList.add("wrong");buttons[q.a].classList.add("correct");fb.className="feedback show bad";fb.innerHTML="💡 Not quite! "+q.why;}document.getElementById("score").textContent=score;document.getElementById("streak").textContent=streak;document.getElementById("nextBtn").disabled=false;document.getElementById("tip").textContent=choice===q.a?"+ points earned — keep going!":"Keep learning — the next one is yours!";if(score>best){best=score;localStorage.setItem("zeroQuestBest",best);document.getElementById("best").textContent=best;}}
+function nextQuestion(){if(!answered)return;index++;if(index>=questions.length){finishGame();return;}renderQuestion();}
+function finishGame(){document.getElementById("game").classList.add("hide");document.getElementById("result").classList.add("show");document.getElementById("progressText").textContent="10 / 10";document.getElementById("progressBar").style.width="100%";document.getElementById("finalScore").textContent=score;let pct=score/115;document.getElementById("resultEmoji").textContent=pct>=.85?"🏆":pct>=.6?"🥈":"🌱";document.getElementById("resultTitle").textContent=pct>=.85?"Grammar Champion!":pct>=.6?"Great progress!":"Keep powering up!";document.getElementById("resultText").textContent=pct>=.85?"Amazing work! You understand the zero conditional really well.":pct>=.6?"Nice effort! Review the quick lesson and play again to earn more points.":"Every expert starts somewhere. Review the examples, then try the quest again!";document.getElementById("result").scrollIntoView({behavior:"smooth",block:"nearest"});}
+</script>
+</body>
+</html>
